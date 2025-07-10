@@ -1,0 +1,36 @@
+body {
+  background-color: white;
+  /* color:antiquewhite; */
+  /* font-family:"Bitcount Grid Double" , sans-serif; */
+  margin: 0;
+  padding-bottom: 60px;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 725px;
+    justify-content: center;
+    align-items: center;
+  
+    
+}
+
+.square {  
+    /* background-color: lightblue; */
+    width: 31%;
+    aspect-ratio: 1/1;
+    border: 2px solid black;
+    font-size: 64px;
+    text-align: center;
+    
+}
+
+#content {
+    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
