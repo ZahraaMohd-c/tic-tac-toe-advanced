@@ -1,5 +1,7 @@
 function init (){
 const squareElm=document.querySelectorAll('.square')
+const closeBtn = document.querySelector('#close')
+const messageBoxElm = document.querySelector('#message-box')
 
 function createGrid(){
    for(let j=0; j<squareElm.length ;j++){
@@ -14,9 +16,14 @@ function createGrid(){
         
    
 }
+function hideIstructions(){
+    messageBoxElm.classList.add('hide')
+
+}
+
 createGrid()
 
-
+closeBtn.addEventListener('click',hideIstructions)
 }
 
 document.addEventListener('DOMContentLoaded',init)
