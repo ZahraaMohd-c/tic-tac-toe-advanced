@@ -3,24 +3,26 @@ function init() {
     const closeBtn = document.querySelector('#close')
     const messageBoxElm = document.querySelector('#message-box')
     const messageElm = document.querySelector('#message')
+    const restartBtn = document.querySelector('resetButton')
     let mainBoard = ['', '', '', '', '', '', '', '', '']
     let innerBoard = [
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', ''],
-        ['', '', '', '', '', '', '', '', '']
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}, 
+       {cells:['', '', '', '', '', '', '', '', '']}
+        
     ]
 
     let turn = 'X'
-    let innerWinner = false
-    let innerTie = false
     let winner = false
     let tie = false
+
+    innerBoard.forEach(board => board.winner=false , board.tie= false )
 
     
     function createGrid() {
@@ -84,6 +86,8 @@ function init() {
     }
 
 
+
+
     createGrid()
    
     function handleClick(event){
@@ -101,12 +105,10 @@ function init() {
     }
 
     closeBtn.addEventListener('click', hideIstructions)
-   
-     
-    // document.addEventListener('click',handleClick)
     document.querySelectorAll('.innerSquare').forEach(inner => {
     inner.addEventListener('click', handleClick)
 })
+    restartBtn.addEventListener('click',init)
 
 }
 
