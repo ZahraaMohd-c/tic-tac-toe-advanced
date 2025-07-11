@@ -3,7 +3,7 @@ function init() {
     const closeBtn = document.querySelector('#close')
     const messageBoxElm = document.querySelector('#message-box')
     const messageElm = document.querySelector('#message')
-    const restartBtn = document.querySelector('resetButton')
+    const restartBtn = document.querySelector('#resetButton')
     let mainBoard = ['', '', '', '', '', '', '', '', '']
     let innerBoard = [
        {cells:['', '', '', '', '', '', '', '', '']}, 
@@ -22,10 +22,13 @@ function init() {
     let winner = false
     let tie = false
 
-    innerBoard.forEach(board => board.winner=false , board.tie= false )
+    innerBoard.forEach(board => {
+        board.winner=false
+        board.tie= false })
 
     
     function createGrid() {
+
         squareElm.forEach((outerSquare, outerIndex) => {
             outerSquare.innerHTML = '' // Clear any existing content
 
@@ -34,18 +37,15 @@ function init() {
                 innerSquare.classList.add('innerSquare')
                 innerSquare.dataset.outer = outerIndex
                 innerSquare.dataset.inner = innerIndex
-                innerSquare.textContent = innerBoard[outerIndex][innerIndex]
+                innerSquare.textContent = innerBoard[outerIndex].cells[innerIndex]
+                innerSquare.addEventListener('click',handleClick)
                 outerSquare.appendChild(innerSquare)
-                innerSquare.dataset.outer = outerIndex;
-                innerSquare.dataset.inner = innerIndex;
             }
             
         })
-        
-
-
 
     }
+
     function updateStatus(){
         if(!winner && !tie){
             messageElm.textContent= `${turn}'s turn`
@@ -59,14 +59,9 @@ function init() {
     }
 
     function placePiece(index1,index2){
-        innerBoard[index1][index2]=turn
+        innerBoard[index1].cells[index2]=turn
     }
-    function updteMainBoard() {
-        mainBoard.forEach((element, i) => {
-            squareElm[i].textContent = element
-        });
-
-    }
+   
     function turnSwitch(){
         if(!winner){
             if(turn==='X'){
@@ -85,16 +80,13 @@ function init() {
 
     }
 
-
-
-
-    createGrid()
+    
    
     function handleClick(event){
         
         let outerSquareIndex =parseInt(event.target.dataset.outer)
         let innerSquareIndex=parseInt(event.target.dataset.inner)
-        if(innerBoard[outerSquareIndex][innerSquareIndex] !=='' || winner || tie ){
+        if(innerBoard[outerSquareIndex].cells[innerSquareIndex] !=='' || winner || tie ){
             return
         }
         placePiece(outerSquareIndex,innerSquareIndex)
@@ -105,10 +97,10 @@ function init() {
     }
 
     closeBtn.addEventListener('click', hideIstructions)
-    document.querySelectorAll('.innerSquare').forEach(inner => {
-    inner.addEventListener('click', handleClick)
-})
     restartBtn.addEventListener('click',init)
+
+    createGrid()
+    updateStatus()
 
 }
 
