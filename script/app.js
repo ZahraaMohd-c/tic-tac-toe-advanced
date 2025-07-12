@@ -5,18 +5,11 @@ function init() {
     const messageElm = document.querySelector('#message')
     const restartBtn = document.querySelector('#resetButton')
     let mainBoard = ['', '', '', '', '', '', '', '', '']
-    let innerBoard = [
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] },
-        { cells: ['', '', '', '', '', '', '', '', ''] }
-
-    ]
+    let innerBoard = Array.from({ length: 9 }, () => ({
+        cells: Array(9).fill(''),
+        winner: false,
+        tie: false
+      }));
 
     const winningCombos = [
         [0, 1, 2],
@@ -32,12 +25,8 @@ function init() {
     let turn = 'X'
     let winner = false
     let tie = false
-    let activeBoardIndex= null
+    let activeBoardIndex= null // user can play anywhere
 
-    innerBoard.forEach(board => {
-        board.winner = false
-        board.tie = false
-    })
 
 
     function createGrid() {
@@ -54,8 +43,6 @@ function init() {
             //     outerIndex.classList.add('inactive')
             // }
 
-           
-
 
             for (let innerIndex = 0; innerIndex < 9; innerIndex++) {
                 const innerSquare = document.createElement('div')
@@ -66,6 +53,7 @@ function init() {
                 innerSquare.addEventListener('click', handleClick)
                 outerSquare.appendChild(innerSquare)
             }
+            
 
         })
 
@@ -80,7 +68,7 @@ function init() {
                 return
             }
             else if(innerBoard[outerIndex].tie){
-                outerSquare.innerHTML = mainBoard[ outerIndex] // or put ⛔
+                outerSquare.innerHTML = '⛔' 
                 outerSquare.classList.add('tie')
             }
         })
@@ -121,6 +109,9 @@ function init() {
 
     function checkInnerWinner() {
         innerBoard.forEach((board, boadIndex) => {
+            if(board.winner){
+                return
+            }
             for (let i = 0; i < winningCombos.length; i++) {
             let combo = winningCombos[i]
 
@@ -128,7 +119,7 @@ function init() {
                 board.cells[combo[0]] === board.cells[combo[1]] &&
                 board.cells[combo[1]] === board.cells[combo[2]]) {
                     board.winner=true
-                    mainBoard[boadIndex] = turn
+                    mainBoard[boadIndex] = board.cells[0]
                     return
 
             }
