@@ -6,31 +6,56 @@ function init() {
     const restartBtn = document.querySelector('#resetButton')
     let mainBoard = ['', '', '', '', '', '', '', '', '']
     let innerBoard = [
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}, 
-       {cells:['', '', '', '', '', '', '', '', '']}
-        
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] },
+        { cells: ['', '', '', '', '', '', '', '', ''] }
+
+    ]
+
+    const winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
     ]
 
     let turn = 'X'
     let winner = false
     let tie = false
+    let activeBoardIndex= null
 
     innerBoard.forEach(board => {
-        board.winner=false
-        board.tie= false })
+        board.winner = false
+        board.tie = false
+    })
 
-    
+
     function createGrid() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
-            outerSquare.innerHTML = '' // Clear any existing content
+            if(!innerBoard[outerIndex].winner&&!innerBoard[outerIndex].tie){
+                outerSquare.innerHTML = ''
+            }
+             // highligh the active board
+            // if(activeBoardIndex=== null || outerIndex === activeBoardIndex){
+            //     outerSquare.classList.remove('inactive')
+            // }
+            // else{
+            //     outerIndex.classList.add('inactive')
+            // }
+
+           
+
 
             for (let innerIndex = 0; innerIndex < 9; innerIndex++) {
                 const innerSquare = document.createElement('div')
@@ -38,69 +63,154 @@ function init() {
                 innerSquare.dataset.outer = outerIndex
                 innerSquare.dataset.inner = innerIndex
                 innerSquare.textContent = innerBoard[outerIndex].cells[innerIndex]
-                innerSquare.addEventListener('click',handleClick)
+                innerSquare.addEventListener('click', handleClick)
                 outerSquare.appendChild(innerSquare)
             }
-            
+
         })
 
     }
 
-    function updateStatus(){
-        if(!winner && !tie){
-            messageElm.textContent= `${turn}'s turn`
+    function changeOuterDisplay(){
+        squareElm.forEach((outerSquare, outerIndex) => {
+            
+             if(innerBoard[outerIndex].winner){
+                outerSquare.innerHTML = mainBoard[outerIndex]
+                outerSquare.classList.add('change')
+                return
+            }
+            else if(innerBoard[outerIndex].tie){
+                outerSquare.innerHTML = mainBoard[ outerIndex] // or put ⛔
+                outerSquare.classList.add('tie')
+            }
+        })
+
+    }
+
+
+    function updateStatus() {
+        if (!winner && !tie) {
+            messageElm.textContent = `${turn}'s turn`
         }
-        else if(!winner && tie){
+        else if (!winner && tie) {
             messageElm.textContent = " It's a tie"
         }
         else {
             messageElm.textContent = '🎉 Congratulation to ' + turn + ' you are the winner!'
         }
+
     }
 
-    function placePiece(index1,index2){
-        innerBoard[index1].cells[index2]=turn
+
+    function placePiece(index1, index2) {
+        innerBoard[index1].cells[index2] = turn
     }
-   
-    function turnSwitch(){
-        if(!winner){
-            if(turn==='X'){
-                turn='O'
-            }else{
-                turn='X'
+
+    function turnSwitch() {
+        if (!winner) {
+            if (turn === 'X') {
+                turn = 'O'
+            } else {
+                turn = 'X'
             }
         }
-        else{
+        else {
             return
         }
     }
+
+    function checkInnerWinner() {
+        innerBoard.forEach((board, boadIndex) => {
+            for (let i = 0; i < winningCombos.length; i++) {
+            let combo = winningCombos[i]
+
+            if (board.cells[combo[0]] !== '' &&
+                board.cells[combo[0]] === board.cells[combo[1]] &&
+                board.cells[combo[1]] === board.cells[combo[2]]) {
+                    board.winner=true
+                    mainBoard[boadIndex] = turn
+                    return
+
+            }
+
+        }
+        })
+        
+
+    }
+    function checkInnerTie() {
+        for (let i = 0; i < 9; i++) {
+            if (innerBoard[i].winner) {
+                return
+            } if (innerBoard[i].cells.every(cell => cell !== '')) {
+                innerBoard[i].tie = true
+                mainBoard[i] = ''
+
+            }
+        }
+
+
+    }
+
 
     function hideIstructions() {
         messageBoxElm.classList.add('hide')
 
     }
 
-    
-   
-    function handleClick(event){
-        
-        let outerSquareIndex =parseInt(event.target.dataset.outer)
-        let innerSquareIndex=parseInt(event.target.dataset.inner)
-        if(innerBoard[outerSquareIndex].cells[innerSquareIndex] !=='' || winner || tie ){
+    function handleClick(event) {
+
+        let outerSquareIndex = parseInt(event.target.dataset.outer)
+        let innerSquareIndex = parseInt(event.target.dataset.inner)
+        let board = innerBoard[outerSquareIndex]
+        if (board.cells[innerSquareIndex] !== '' || board.winner || board.tie) {
             return
         }
-        placePiece(outerSquareIndex,innerSquareIndex)
+        
+        placePiece(outerSquareIndex, innerSquareIndex)
         createGrid()
+        checkInnerWinner()
+        checkInnerTie()
+        changeOuterDisplay()
         turnSwitch()
         updateStatus()
 
+
+
     }
+    function reset() {
+        mainBoard = ['', '', '', '', '', '', '', '', '']
+        innerBoard = [
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] },
+            { cells: ['', '', '', '', '', '', '', '', ''] }
 
-    closeBtn.addEventListener('click', hideIstructions)
-    restartBtn.addEventListener('click',init)
+        ]
+        innerBoard.forEach(board => {
+            board.winner = false
+            board.tie = false
+        })
 
+        turn = 'X'
+        winner = false
+        tie = false
+        activeBoardIndex= null
+        createGrid()
+        updateStatus()
+
+    }
     createGrid()
     updateStatus()
+
+    closeBtn.addEventListener('click', hideIstructions)
+    restartBtn.addEventListener('click', reset)
+
 
 }
 
