@@ -119,7 +119,7 @@ function init() {
                 board.cells[combo[0]] === board.cells[combo[1]] &&
                 board.cells[combo[1]] === board.cells[combo[2]]) {
                     board.winner=true
-                    mainBoard[boadIndex] = board.cells[0]
+                    mainBoard[boadIndex] = board.cells[combo[0]]
                     return
 
             }
@@ -186,9 +186,9 @@ function init() {
         checkInnerTie()
         changeOuterDisplay()
         turnSwitch()
-        updateStatus()
         checkOuterWinner()
         checkOuterTie()
+        updateStatus()
 
 
 
