@@ -129,6 +129,7 @@ function init() {
         
 
     }
+
     function checkInnerTie() {
         for (let i = 0; i < 9; i++) {
             if (innerBoard[i].winner) {
@@ -141,6 +142,27 @@ function init() {
         }
 
 
+    }
+    function checkOuterWinner(){
+        for(let i=0;i<winningCombos.length;i++){
+            let combo=winningCombos[i]
+            
+            if(mainBoard[combo[0]]!==''&&
+                mainBoard[combo[0]]===mainBoard[combo[1]]&&
+                mainBoard[combo[1]]===mainBoard[combo[2]] ){
+                winner=true
+                return
+            }
+        }
+    }
+
+    function checkOuterTie(){
+        if(winner){
+            return
+        }
+        if(mainBoard.every(bour=> bour!=='')) {
+            tie=true
+        }
     }
 
 
@@ -165,6 +187,8 @@ function init() {
         changeOuterDisplay()
         turnSwitch()
         updateStatus()
+        checkOuterWinner()
+        checkOuterTie()
 
 
 
