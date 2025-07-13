@@ -34,29 +34,29 @@ function init() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
 
-            if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
+            // if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
             outerSquare.innerHTML = ''
+            // }
+            
+            outerSquare.classList.remove('active')
+            //  highligh the active board
+            if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
+                if (activeBoardIndex === null || outerIndex === activeBoardIndex) {
+                    
+                    outerSquare.classList.add('active')
+                }
             }
+            
             if (innerBoard[outerIndex].winner) {
                 outerSquare.innerHTML = mainBoard[outerIndex]
                 outerSquare.classList.add('change')
                 return
             }
-            else if (innerBoard[outerIndex].tie) {
-                outerSquare.innerHTML = '⛔'
+            if (innerBoard[outerIndex].tie) {
+                outerSquare.innerHTML = mainBoard[outerIndex]//'⛔'
                 outerSquare.classList.add('tie')
+                return
             }
-
-            outerSquare.classList.remove('active')
-            //  highligh the active board
-            if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
-                if (activeBoardIndex === null || outerIndex === activeBoardIndex) {
-
-                    outerSquare.classList.add('active')
-                }
-            }
-
-
 
             for (let innerIndex = 0; innerIndex < 9; innerIndex++) {
                 const innerSquare = document.createElement('div')
@@ -66,33 +66,11 @@ function init() {
                 innerSquare.textContent = innerBoard[outerIndex].cells[innerIndex]
                 innerSquare.addEventListener('click', handleClick)
                 outerSquare.appendChild(innerSquare)
-
-
             }
-
-
-
 
         })
 
     }
-
-
-    // function changeOuterDisplay() {
-    //     squareElm.forEach((outerSquare, outerIndex) => {
-
-    //         if (innerBoard[outerIndex].winner) {
-    //             outerSquare.innerHTML = mainBoard[outerIndex]
-    //             outerSquare.classList.add('change')
-    //             return
-    //         }
-    //         else if (innerBoard[outerIndex].tie) {
-    //             outerSquare.innerHTML = '⛔'
-    //             outerSquare.classList.add('tie')
-    //         }
-    //     })
-
-    // }
 
 
     function updateStatus() {
@@ -151,8 +129,8 @@ function init() {
 
     function checkInnerTie() {
         for (let i = 0; i < 9; i++) {
-            if (innerBoard[i].winner) {
-                return
+            if (innerBoard[i].winner ) {
+                continue
             } if (innerBoard[i].cells.every(cell => cell !== '')) {
                 innerBoard[i].tie = true
                 mainBoard[i] = ''
@@ -179,7 +157,7 @@ function init() {
         if (winner) {
             return
         }
-        if (mainBoard.every(bour => bour !== '')) {
+        if (mainBoard.every(bourd => bourd !== '')) {
             tie = true
         }
     }
@@ -195,10 +173,10 @@ function init() {
     }
 
     function handleClick(event) {
+        if(winner || tie) return
 
         let outerSquareIndex = parseInt(event.target.dataset.outer)
         let innerSquareIndex = parseInt(event.target.dataset.inner)
-        // activeBoardIndex = innerSquareIndex
         let board = innerBoard[outerSquareIndex]
         // if this board is not active, ignore the click 
         if (activeBoardIndex !== null && activeBoardIndex != outerSquareIndex && !innerBoard[activeBoardIndex].winner && !innerBoard[activeBoardIndex].tie) {

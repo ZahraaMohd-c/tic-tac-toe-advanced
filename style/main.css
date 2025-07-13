@@ -101,6 +101,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    background-color: lightgreen;
 
 }
 
@@ -127,4 +128,13 @@ body {
 }
 h1, h2{
     font-size: 30px;
+}
+.tie{
+    background-color: white;
+    font-size: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
 }
