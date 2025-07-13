@@ -120,3 +120,8 @@ body {
     align-items: center;
     gap: 50px;
 }
+
+.active{
+    background-color: rgb(254, 254, 164);
+
+}

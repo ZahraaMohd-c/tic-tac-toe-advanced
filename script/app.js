@@ -10,7 +10,7 @@ function init() {
         cells: Array(9).fill(''),
         winner: false,
         tie: false
-      }));
+    }));
 
     const winningCombos = [
         [0, 1, 2],
@@ -26,23 +26,29 @@ function init() {
     let turn = 'X'
     let winner = false
     let tie = false
-    let activeBoardIndex= null // user can play anywhere
+    let activeBoardIndex = null // user can play anywhere
 
 
 
     function createGrid() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
-            if(!innerBoard[outerIndex].winner&&!innerBoard[outerIndex].tie){
+            
+            outerSquare.classList.remove('active')
+            if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
                 outerSquare.innerHTML = ''
             }
-             // highligh the active board
-            // if(activeBoardIndex=== null || outerIndex === activeBoardIndex){
-            //     outerSquare.classList.remove('inactive')
-            // }
-            // else{
-            //     outerIndex.classList.add('inactive')
-            // }
+            //  highligh the active board
+            if(!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie){
+                
+                if (activeBoardIndex === null || outerIndex === activeBoardIndex){
+
+                    outerSquare.classList.add('active')
+                }
+            }
+            
+           
+
 
 
             for (let innerIndex = 0; innerIndex < 9; innerIndex++) {
@@ -54,22 +60,23 @@ function init() {
                 innerSquare.addEventListener('click', handleClick)
                 outerSquare.appendChild(innerSquare)
             }
-            
+
 
         })
 
     }
+   
 
-    function changeOuterDisplay(){
+    function changeOuterDisplay() {
         squareElm.forEach((outerSquare, outerIndex) => {
-            
-             if(innerBoard[outerIndex].winner){
+
+            if (innerBoard[outerIndex].winner) {
                 outerSquare.innerHTML = mainBoard[outerIndex]
                 outerSquare.classList.add('change')
                 return
             }
-            else if(innerBoard[outerIndex].tie){
-                outerSquare.innerHTML = '⛔' 
+            else if (innerBoard[outerIndex].tie) {
+                outerSquare.innerHTML = '⛔'
                 outerSquare.classList.add('tie')
             }
         })
@@ -110,24 +117,24 @@ function init() {
 
     function checkInnerWinner() {
         innerBoard.forEach((board, boadIndex) => {
-            if(board.winner){
+            if (board.winner) {
                 return
             }
             for (let i = 0; i < winningCombos.length; i++) {
-            let combo = winningCombos[i]
+                let combo = winningCombos[i]
 
-            if (board.cells[combo[0]] !== '' &&
-                board.cells[combo[0]] === board.cells[combo[1]] &&
-                board.cells[combo[1]] === board.cells[combo[2]]) {
-                    board.winner=true
+                if (board.cells[combo[0]] !== '' &&
+                    board.cells[combo[0]] === board.cells[combo[1]] &&
+                    board.cells[combo[1]] === board.cells[combo[2]]) {
+                    board.winner = true
                     mainBoard[boadIndex] = board.cells[combo[0]]
                     return
 
-            }
+                }
 
-        }
+            }
         })
-        
+
 
     }
 
@@ -144,29 +151,29 @@ function init() {
 
 
     }
-    function checkOuterWinner(){
-        for(let i=0;i<winningCombos.length;i++){
-            let combo=winningCombos[i]
-            
-            if(mainBoard[combo[0]]!==''&&
-                mainBoard[combo[0]]===mainBoard[combo[1]]&&
-                mainBoard[combo[1]]===mainBoard[combo[2]] ){
-                winner=true
+    function checkOuterWinner() {
+        for (let i = 0; i < winningCombos.length; i++) {
+            let combo = winningCombos[i]
+
+            if (mainBoard[combo[0]] !== '' &&
+                mainBoard[combo[0]] === mainBoard[combo[1]] &&
+                mainBoard[combo[1]] === mainBoard[combo[2]]) {
+                winner = true
                 return
             }
         }
     }
 
-    function checkOuterTie(){
-        if(winner){
+    function checkOuterTie() {
+        if (winner) {
             return
         }
-        if(mainBoard.every(bour=> bour!=='')) {
-            tie=true
+        if (mainBoard.every(bour => bour !== '')) {
+            tie = true
         }
     }
 
-    function showInstructions(){
+    function showInstructions() {
         messageBoxElm.classList.remove('hide')
     }
 
@@ -180,11 +187,16 @@ function init() {
 
         let outerSquareIndex = parseInt(event.target.dataset.outer)
         let innerSquareIndex = parseInt(event.target.dataset.inner)
+        activeBoardIndex = innerSquareIndex
         let board = innerBoard[outerSquareIndex]
+        
+        // if(activeBoardIndex!== null && activeBoardIndex!=outerSquareIndex && !innerBoard[activeBoardIndex].winner && !innerBoard[activeBoardIndex].tie){
+        //     return
+        // }
         if (board.cells[innerSquareIndex] !== '' || board.winner || board.tie) {
             return
         }
-        
+
         placePiece(outerSquareIndex, innerSquareIndex)
         createGrid()
         checkInnerWinner()
@@ -193,44 +205,23 @@ function init() {
         turnSwitch()
         checkOuterWinner()
         checkOuterTie()
+        if( !innerBoard[innerSquareIndex].winner && !innerBoard[innerSquareIndex.tie]){
+            activeBoardIndex= innerSquareIndex
+        }else{
+            activeBoardIndex = null
+        }
         updateStatus()
 
 
 
     }
-    function reset() {
-        mainBoard = ['', '', '', '', '', '', '', '', '']
-        innerBoard = [
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] },
-            { cells: ['', '', '', '', '', '', '', '', ''] }
-
-        ]
-        innerBoard.forEach(board => {
-            board.winner = false
-            board.tie = false
-        })
-
-        turn = 'X'
-        winner = false
-        tie = false
-        activeBoardIndex= null
-        createGrid()
-        updateStatus()
-
-    }
+   
     createGrid()
     updateStatus()
-    questionMarkBtn.addEventListener('click',showInstructions)
 
+    questionMarkBtn.addEventListener('click', showInstructions)
     closeBtn.addEventListener('click', hideIstructions)
-    restartBtn.addEventListener('click', reset)
+    restartBtn.addEventListener('click', init)
 
 
 }
