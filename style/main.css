@@ -108,10 +108,10 @@ body {
     font-size: 30px;
     color: white;
     font-family: "Silkscreen", sans-serif;
-    width: 40px; 
-      height: 35px;
-      background-color:#050A30; 
-      
+    width: 40px;
+    height: 35px;
+    background-color: #050A30;
+
 }
 
 #head-title {
@@ -121,7 +121,10 @@ body {
     gap: 50px;
 }
 
-.active{
+.active {
     background-color: rgb(254, 254, 164);
 
+}
+h1, h2{
+    font-size: 30px;
 }

@@ -33,21 +33,28 @@ function init() {
     function createGrid() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
-            
-            outerSquare.classList.remove('active')
+
             if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
-                outerSquare.innerHTML = ''
+            outerSquare.innerHTML = ''
             }
+            if (innerBoard[outerIndex].winner) {
+                outerSquare.innerHTML = mainBoard[outerIndex]
+                outerSquare.classList.add('change')
+                return
+            }
+            else if (innerBoard[outerIndex].tie) {
+                outerSquare.innerHTML = '⛔'
+                outerSquare.classList.add('tie')
+            }
+
+            outerSquare.classList.remove('active')
             //  highligh the active board
-            if(!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie){
-                
-                if (activeBoardIndex === null || outerIndex === activeBoardIndex){
+            if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
+                if (activeBoardIndex === null || outerIndex === activeBoardIndex) {
 
                     outerSquare.classList.add('active')
                 }
             }
-            
-           
 
 
 
@@ -59,29 +66,33 @@ function init() {
                 innerSquare.textContent = innerBoard[outerIndex].cells[innerIndex]
                 innerSquare.addEventListener('click', handleClick)
                 outerSquare.appendChild(innerSquare)
+
+
             }
+
+
 
 
         })
 
     }
-   
 
-    function changeOuterDisplay() {
-        squareElm.forEach((outerSquare, outerIndex) => {
 
-            if (innerBoard[outerIndex].winner) {
-                outerSquare.innerHTML = mainBoard[outerIndex]
-                outerSquare.classList.add('change')
-                return
-            }
-            else if (innerBoard[outerIndex].tie) {
-                outerSquare.innerHTML = '⛔'
-                outerSquare.classList.add('tie')
-            }
-        })
+    // function changeOuterDisplay() {
+    //     squareElm.forEach((outerSquare, outerIndex) => {
 
-    }
+    //         if (innerBoard[outerIndex].winner) {
+    //             outerSquare.innerHTML = mainBoard[outerIndex]
+    //             outerSquare.classList.add('change')
+    //             return
+    //         }
+    //         else if (innerBoard[outerIndex].tie) {
+    //             outerSquare.innerHTML = '⛔'
+    //             outerSquare.classList.add('tie')
+    //         }
+    //     })
+
+    // }
 
 
     function updateStatus() {
@@ -187,35 +198,35 @@ function init() {
 
         let outerSquareIndex = parseInt(event.target.dataset.outer)
         let innerSquareIndex = parseInt(event.target.dataset.inner)
-        activeBoardIndex = innerSquareIndex
+        // activeBoardIndex = innerSquareIndex
         let board = innerBoard[outerSquareIndex]
-        
-        // if(activeBoardIndex!== null && activeBoardIndex!=outerSquareIndex && !innerBoard[activeBoardIndex].winner && !innerBoard[activeBoardIndex].tie){
-        //     return
-        // }
+        // if this board is not active, ignore the click 
+        if (activeBoardIndex !== null && activeBoardIndex != outerSquareIndex && !innerBoard[activeBoardIndex].winner && !innerBoard[activeBoardIndex].tie) {
+            return
+        }
         if (board.cells[innerSquareIndex] !== '' || board.winner || board.tie) {
             return
         }
 
         placePiece(outerSquareIndex, innerSquareIndex)
-        createGrid()
         checkInnerWinner()
         checkInnerTie()
-        changeOuterDisplay()
-        turnSwitch()
         checkOuterWinner()
         checkOuterTie()
-        if( !innerBoard[innerSquareIndex].winner && !innerBoard[innerSquareIndex.tie]){
-            activeBoardIndex= innerSquareIndex
-        }else{
+        if (!innerBoard[innerSquareIndex].winner && !innerBoard[innerSquareIndex].tie) {
+            activeBoardIndex = innerSquareIndex
+        } else {
             activeBoardIndex = null
         }
+        turnSwitch()
+        createGrid()
         updateStatus()
 
 
 
+
     }
-   
+
     createGrid()
     updateStatus()
 
