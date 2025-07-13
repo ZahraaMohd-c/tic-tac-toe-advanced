@@ -1,13 +1,13 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Tektur:wght@400..900&family=VT323&display=swap');
+
 body {
-  background-color: #050A30	;
-  margin: 0;
-  padding-bottom: 60px;
-  color:aliceblue;
-  font-family: "Silkscreen", sans-serif;
-  height: 1200px;
-  position: relative;
+    background-color: #050A30;
+    margin: 0;
+    padding-bottom: 60px;
+    color: aliceblue;
+    font-family: "Silkscreen", sans-serif;
+    height: 1200px;
+    position: relative;
 }
 
 .board {
@@ -17,11 +17,11 @@ body {
     justify-content: center;
     align-items: center;
     gap: 5px;
-  
-    
+
+
 }
 
-.square {  
+.square {
     background-color: rgb(216, 232, 237);
     width: 31%;
     aspect-ratio: 1/1;
@@ -33,63 +33,69 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 #content {
-    
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
-.innerSquare{
-    width:72px;
+
+.innerSquare {
+    width: 72px;
     height: 72px;
     border: 1px solid black;
     /* font-size: 64px; */
     text-align: center;
-    margin:0;
-    color:#050A30;
-   
+    margin: 0;
+    color: #050A30;
+
 
 }
-#resetButton{
-    margin:40px;
+
+#resetButton {
+    margin: 40px;
     padding: 20px 30px;
     font-family: "Tektur", sans-serif;
     font-weight: 700;
     font-size: x-large;
 }
-#message-box{
+
+#message-box {
     background-color: white;
-    color:black;
+    color: black;
     border: 2px solid #050A30;
     position: absolute;
     padding: 20px;
     z-index: 10;
     width: 600px;
-    font-size:20px;
-    top:10%;
+    font-size: 20px;
+    top: 10%;
 }
-.hide{
+
+.hide {
     visibility: hidden;
 }
-#close{
+
+#close {
     background-color: white;
     border: white;
     font-size: large;
 }
-#header{
+
+#header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
 }
 
-.change{
-    color:#050A30;
+.change {
+    color: #050A30;
     font-size: 130px;
     display: flex;
     justify-content: center;
@@ -98,5 +104,19 @@ body {
 
 }
 
+#question-mark {
+    font-size: 30px;
+    color: white;
+    font-family: "Silkscreen", sans-serif;
+    width: 40px; 
+      height: 35px;
+      background-color:#050A30; 
+      
+}
 
-
+#head-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}

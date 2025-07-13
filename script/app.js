@@ -4,6 +4,7 @@ function init() {
     const messageBoxElm = document.querySelector('#message-box')
     const messageElm = document.querySelector('#message')
     const restartBtn = document.querySelector('#resetButton')
+    const questionMarkBtn = document.querySelector('#question-mark')
     let mainBoard = ['', '', '', '', '', '', '', '', '']
     let innerBoard = Array.from({ length: 9 }, () => ({
         cells: Array(9).fill(''),
@@ -165,6 +166,10 @@ function init() {
         }
     }
 
+    function showInstructions(){
+        messageBoxElm.classList.remove('hide')
+    }
+
 
     function hideIstructions() {
         messageBoxElm.classList.add('hide')
@@ -222,6 +227,7 @@ function init() {
     }
     createGrid()
     updateStatus()
+    questionMarkBtn.addEventListener('click',showInstructions)
 
     closeBtn.addEventListener('click', hideIstructions)
     restartBtn.addEventListener('click', reset)
