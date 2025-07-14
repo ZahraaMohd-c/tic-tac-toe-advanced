@@ -29,24 +29,23 @@ function init() {
     let activeBoardIndex = null // user can play anywhere
 
 
-
     function createGrid() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
 
-            // if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
+            //  if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
             outerSquare.innerHTML = ''
             // }
-            
-            outerSquare.classList.remove('active')
+
+            outerSquare.classList.remove('active', 'change', 'tie')
             //  highligh the active board
             if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
                 if (activeBoardIndex === null || outerIndex === activeBoardIndex) {
-                    
+
                     outerSquare.classList.add('active')
                 }
             }
-            
+
             if (innerBoard[outerIndex].winner) {
                 outerSquare.innerHTML = mainBoard[outerIndex]
                 outerSquare.classList.add('change')
@@ -57,6 +56,7 @@ function init() {
                 outerSquare.classList.add('tie')
                 return
             }
+            
 
             for (let innerIndex = 0; innerIndex < 9; innerIndex++) {
                 const innerSquare = document.createElement('div')
@@ -129,7 +129,7 @@ function init() {
 
     function checkInnerTie() {
         for (let i = 0; i < 9; i++) {
-            if (innerBoard[i].winner ) {
+            if (innerBoard[i].winner) {
                 continue
             } if (innerBoard[i].cells.every(cell => cell !== '')) {
                 innerBoard[i].tie = true
@@ -173,7 +173,8 @@ function init() {
     }
 
     function handleClick(event) {
-        if(winner || tie) return
+        
+        if (winner || tie) {return }
 
         let outerSquareIndex = parseInt(event.target.dataset.outer)
         let innerSquareIndex = parseInt(event.target.dataset.inner)
@@ -200,8 +201,22 @@ function init() {
         createGrid()
         updateStatus()
 
+    }
 
+    function reset() {
+        mainBoard = ['', '', '', '', '', '', '', '', '']
+        innerBoard = Array.from({ length: 9 }, () => ({
+            cells: Array(9).fill(''),
+            winner: false,
+            tie: false
+        }));
+        turn = 'X'
+        winner = false
+        tie = false
+        activeBoardIndex = null
 
+        createGrid()
+        updateStatus()
 
     }
 
@@ -210,7 +225,7 @@ function init() {
 
     questionMarkBtn.addEventListener('click', showInstructions)
     closeBtn.addEventListener('click', hideIstructions)
-    restartBtn.addEventListener('click', init)
+    restartBtn.addEventListener('click', reset)
 
 
 }

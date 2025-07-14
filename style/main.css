@@ -8,6 +8,8 @@ body {
     font-family: "Silkscreen", sans-serif;
     height: 1200px;
     position: relative;
+
+
 }
 
 .board {
@@ -72,8 +74,8 @@ body {
     position: absolute;
     padding: 20px;
     z-index: 10;
-    width: 600px;
-    font-size: 20px;
+    width: 800px;
+    font-size: 28px;
     top: 10%;
 }
 
@@ -84,7 +86,7 @@ body {
 #close {
     background-color: white;
     border: white;
-    font-size: large;
+    font-size: 28px;
 }
 
 #header {
@@ -126,15 +128,22 @@ body {
     background-color: rgb(254, 254, 164);
 
 }
-h1, h2{
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
     font-size: 30px;
 }
-.tie{
+
+.tie {
     background-color: white;
     font-size: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    
+
 }
+
