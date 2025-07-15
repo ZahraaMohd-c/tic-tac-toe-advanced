@@ -7,44 +7,92 @@
     <title>Advanced XO</title>
     <link rel="stylesheet" href="style/main.css">
     <script src="/script/app.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const bg = document.createElement("div");
+    bg.className = "xo-background";
+
+    for (let i = 0; i < 50; i++) {
+        const span = document.createElement("span");
+        span.textContent = Math.random() > 0.5 ? "X" : "O";
+        span.style.top = `${Math.random() * 100}%`;
+        span.style.left = `${Math.random() * 100}%`;
+        bg.appendChild(span);
+    }
+
+    document.body.appendChild(bg);
+});
+</script>
+
 </head>
-    
+
 <body>
-    <div id="content">
+    
+    <div id="main-page">
+        <div class="xo-background">
+    <!-- You can repeat or generate many of these -->
+    <span style="top:10%; left:20%;">X</span>
+    <span style="top:30%; left:45%;">O</span>
+    <span style="top:60%; left:70%;">X</span>
+    <span style="top:80%; left:15%;">O</span>
+    <span style="top:20%; left:75%;">X</span>
+    <span style="top:55%; left:30%;">O</span>
+    <span style="top:40%; left:10%;">X</span>
+</div>
+
         <h1 id="title">Advanced XO</h1>
+        <div id="home-page-content">
 
-        <div id="head-title">
-            <h2 id="message">X's turn</h2>
-            <button id="question-mark">?</button>
+              <h1 id="start-game">Start Game</h1>
+        <button id="play-button">Play</button>
         </div>
-        <div id="message-box" class="hide">
-            <div id="header" >
-                <p>🚀 Hello!</p>
-            <button id="close">X</button>
+      
+        <!-- <button id="instructions-button" class="main-buttons">instructions</button> -->
+
+    </div>
+    <div id="game-page">
+        <div id="content">
+            <h1 id="title">Advanced XO</h1>
+            <!-- <div id="instructions" class="hide"> -->
+            <div id="message-box" class="hide">
+                <div id="header">
+                    <p>🚀 Hello!</p>
+                    <button id="close">X</button>
+                </div>
+                <p> This is how you play the game:</p>
+                <ul>
+                    <li> the first player <strong>X</strong> can play anywhere.</li>
+                    <li> According to the place that <strong>X</strong> played, <strong>O</strong> should play in the
+                        outer <strong>XO</strong> position.</li>
+                    <li> the player who gets one of the winning combinations in the outer <strong>XO</strong> is the
+                        winner!</li>
+                </ul>
+                <br>
+                <p>🎮<em>Have a good time!</em></p>
+
+
             </div>
-            <p> This is how you play the game:</p>
-            <ul>
-            <li> the first player <strong>X</strong> can play anywhere.</li>
-            <li> According to the place that <strong>X</strong> played, <strong>O</strong> should play in the outer <strong>XO</strong> position.</li>
-            <li> the player who gets one of the winning combinations in the outer <strong>XO</strong> is the winner!</li>
-            </ul>
-            <br>
-            <p>🎮<em>Have a good time!</em></p>
 
+
+            <!-- <div id="game-page" > -->
+            <div id="head-title">
+                <h2 id="message">X's turn</h2>
+                <button id="question-mark">?</button>
+            </div>
+            <section class="board">
+                <div class="square" id="1"></div>
+                <div class="square" id="2"></div>
+                <div class="square" id="3"></div>
+                <div class="square" id="4"></div>
+                <div class="square" id="5"></div>
+                <div class="square" id="6"></div>
+                <div class="square" id="7"></div>
+                <div class="square" id="8"></div>
+                <div class="square" id="9"></div>
+            </section>
+            <button id="resetButton">restart</button>
 
         </div>
-        <section class="board">
-            <div class="square" id="1"></div>
-            <div class="square" id="2"></div>
-            <div class="square" id="3"></div>
-            <div class="square" id="4"></div>
-            <div class="square" id="5"></div>
-            <div class="square" id="6"></div>
-            <div class="square" id="7"></div>
-            <div class="square" id="8"></div>
-            <div class="square" id="9"></div>
-        </section>
-        <button id="resetButton">restart</button>
     </div>
 </body>
 

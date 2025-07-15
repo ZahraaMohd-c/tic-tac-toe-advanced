@@ -5,6 +5,9 @@ function init() {
     const messageElm = document.querySelector('#message')
     const restartBtn = document.querySelector('#resetButton')
     const questionMarkBtn = document.querySelector('#question-mark')
+    
+
+
     let mainBoard = ['', '', '', '', '', '', '', '', '']
     let innerBoard = Array.from({ length: 9 }, () => ({
         cells: Array(9).fill(''),
@@ -28,14 +31,19 @@ function init() {
     let tie = false
     let activeBoardIndex = null // user can play anywhere
 
-
+function openPages(pageId){
+        document.getElementById('main-page').style.display= 'none'
+        document.getElementById('game-page').style.display= 'none'
+        // document.getElementById('instructions-page').style.display= 'none'
+        document.getElementById(pageId).style.display = 'block'
+    }
     function createGrid() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
 
-            //  if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
+             if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
             outerSquare.innerHTML = ''
-            // }
+            }
 
             outerSquare.classList.remove('active', 'change', 'tie')
             //  highligh the active board
@@ -227,6 +235,12 @@ function init() {
     closeBtn.addEventListener('click', hideIstructions)
     restartBtn.addEventListener('click', reset)
 
+    openPages('main-page')
+    // openPages('game-page')
+
+    document.getElementById('play-button').addEventListener('click', () => {
+    openPages('game-page')
+})
 
 }
 
