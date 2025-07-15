@@ -5,7 +5,7 @@ function init() {
     const messageElm = document.querySelector('#message')
     const restartBtn = document.querySelector('#resetButton')
     const questionMarkBtn = document.querySelector('#question-mark')
-    
+    const displayElm = document.querySelector('#win-message')
 
 
     let mainBoard = ['', '', '', '', '', '', '', '', '']
@@ -31,18 +31,17 @@ function init() {
     let tie = false
     let activeBoardIndex = null // user can play anywhere
 
-function openPages(pageId){
-        document.getElementById('main-page').style.display= 'none'
-        document.getElementById('game-page').style.display= 'none'
-        // document.getElementById('instructions-page').style.display= 'none'
+    function openPages(pageId) {
+        document.getElementById('main-page').style.display = 'none'
+        document.getElementById('game-page').style.display = 'none'
         document.getElementById(pageId).style.display = 'block'
     }
     function createGrid() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
 
-             if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
-            outerSquare.innerHTML = ''
+            if (!innerBoard[outerIndex].winner && !innerBoard[outerIndex].tie) {
+                outerSquare.innerHTML = ''
             }
 
             outerSquare.classList.remove('active', 'change', 'tie')
@@ -64,7 +63,7 @@ function openPages(pageId){
                 outerSquare.classList.add('tie')
                 return
             }
-            
+
 
             for (let innerIndex = 0; innerIndex < 9; innerIndex++) {
                 const innerSquare = document.createElement('div')
@@ -86,10 +85,14 @@ function openPages(pageId){
             messageElm.textContent = `${turn}'s turn`
         }
         else if (!winner && tie) {
-            messageElm.textContent = " It's a tie"
+            displayElm.textContent = " It's a tie"
+            displayElm.classList.remove('hide')
+
         }
         else {
-            messageElm.textContent = '🎉 Congratulation to ' + turn + ' you are the winner!'
+            displayElm.textContent = turn + '  is the winner🎉'
+            displayElm.classList.remove('hide')
+
         }
 
     }
@@ -181,8 +184,10 @@ function openPages(pageId){
     }
 
     function handleClick(event) {
-        
-        if (winner || tie) {return }
+
+        if (winner || tie) {
+            return
+        }
 
         let outerSquareIndex = parseInt(event.target.dataset.outer)
         let innerSquareIndex = parseInt(event.target.dataset.inner)
@@ -225,6 +230,9 @@ function openPages(pageId){
 
         createGrid()
         updateStatus()
+        displayElm.classList.add('hide')
+
+
 
     }
 
@@ -236,11 +244,10 @@ function openPages(pageId){
     restartBtn.addEventListener('click', reset)
 
     openPages('main-page')
-    // openPages('game-page')
 
     document.getElementById('play-button').addEventListener('click', () => {
-    openPages('game-page')
-})
+        openPages('game-page')
+    })
 
 }
 
