@@ -15,7 +15,7 @@ I was tasked with creating a browser-based game at General Assembly, and I chose
 
 ## Getting started
 
-[planning](https://github.com/user-attachments/files/21255647/Nested.advanced.XO.pdf)
+- [planning](https://github.com/user-attachments/files/21255647/Nested.advanced.XO.pdf)
 
 ## Attributions
 
