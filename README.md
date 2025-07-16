@@ -34,7 +34,7 @@ And that is how the game looks like
 
 ## Planning
 
-
+[Nested advanced XO.pdf](https://github.com/user-attachments/files/21261894/Nested.advanced.XO.pdf)
 
 ## Attributions
 
