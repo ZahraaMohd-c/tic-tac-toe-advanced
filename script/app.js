@@ -1,4 +1,17 @@
 function init() {
+     const bg = document.createElement("div");
+            bg.className = "xo-background";
+
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement("span");
+                span.textContent = Math.random() > 0.5 ? "X" : "O";
+                span.style.top = `${Math.random() * 100}%`;
+                span.style.left = `${Math.random() * 100}%`;
+                bg.appendChild(span);
+            }
+
+            document.body.appendChild(bg);
+            
     const squareElm = document.querySelectorAll('.square')
     const closeBtn = document.querySelector('#close')
     const messageBoxElm = document.querySelector('#message-box')
