@@ -1,4 +1,4 @@
-# Project1: Advaned tic-tac-toe
+# Project1: Advanced tic-tac-toe
 
 ## Introduction 
 
