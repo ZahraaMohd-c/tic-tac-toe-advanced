@@ -191,24 +191,15 @@ h2 {
 
 
 #main-page {
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-
-#main-page {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
+text-align: center;
     margin-top: 100px;
-
 }
+
 
 #home-page-content {
     align-items: center;
@@ -271,7 +262,7 @@ body::before {
     color: rgba(255, 255, 255, 0.1);
     user-select: none;
 }
-
+/* the end of the background */
 #win-message {
     background-color: white;
     padding: 60px 100px;

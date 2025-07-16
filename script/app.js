@@ -1,16 +1,20 @@
 function init() {
-    //  const bg = document.createElement("div");
-    //         bg.className = "xo-background";
+    // the background animation 
+     const bg = document.createElement("div");
+            bg.className = "xo-background";
 
-    //         for (let i = 0; i < 50; i++) {
-    //             const span = document.createElement("span");
-    //             span.textContent = Math.random() > 0.5 ? "X" : "O";
-    //             span.style.top = `${Math.random() * 100}%`;
-    //             span.style.left = `${Math.random() * 100}%`;
-    //             bg.appendChild(span);
-    //         }
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement("span");
+                span.textContent = Math.random() > 0.5 ? "X" : "O";
+                span.style.top = `${Math.random() * 100}%`;
+                span.style.left = `${Math.random() * 100}%`;
+                bg.appendChild(span);
+            }
 
-    //         document.body.appendChild(bg);
+            document.body.appendChild(bg);
+
+    // the main game logic
+    // chached elements
 
     const squareElm = document.querySelectorAll('.square')
     const closeBtn = document.querySelector('#close')
@@ -20,7 +24,8 @@ function init() {
     const questionMarkBtn = document.querySelector('#question-mark')
     const displayElm = document.querySelector('#win-message')
 
-
+// game state variables
+    // mainBoard keeps track of the winner of each inner board
     let mainBoard = ['', '', '', '', '', '', '', '', '']
     let innerBoard = Array.from({ length: 9 }, () => ({
         cells: Array(9).fill(''),
@@ -44,11 +49,14 @@ function init() {
     let tie = false
     let activeBoardIndex = null // user can play anywhere when it is null 
 
+    // functions
+    // making the pages visible or hidden
     function openPages(pageId) {
         document.getElementById('main-page').style.display = 'none'
         document.getElementById('game-page').style.display = 'none'
         document.getElementById(pageId).style.display = 'block'
     }
+    
     function createGrid() {
 
         squareElm.forEach((outerSquare, outerIndex) => {
@@ -66,6 +74,7 @@ function init() {
                 }
             }
 
+            
             if (innerBoard[outerIndex].winner) {
                 outerSquare.innerHTML = mainBoard[outerIndex]
                 outerSquare.classList.add('change')
@@ -244,8 +253,6 @@ function init() {
         createGrid()
         updateStatus()
         displayElm.classList.add('hide')
-
-
 
     }
 
