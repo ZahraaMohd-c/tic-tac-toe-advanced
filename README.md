@@ -15,6 +15,8 @@ I was tasked with creating a browser-based game at General Assembly, and I chose
 
 ## Getting started
 
+[Nested advanced XO.pdf](https://github.com/user-attachments/files/21255647/Nested.advanced.XO.pdf)
+
 // the link of the deployed game
 
 ## Attributions
