@@ -1,6 +1,9 @@
-# 🎮Advaned tic-tac-toe
+# Project1: Advaned tic-tac-toe
 
-## Advanced tic-tac-toe:
+## Introduction :
+
+
+## How to play the game:
 
 - The game is a nested tic-tac-toe that each square in the outer board has a nine inner boards that make another tic-tac-toe inside of it.
 - The game starts with X player which cann play anywhere in the inner squares and then according to the place played in the inner boards the O player show play in the same ouer square and so on.
@@ -20,10 +23,12 @@
 - JavaScript
 - HTML
 - CSS
+- Git
 
-## Next steps:
+## Additional fearures:
 
 - To make the game one player against the computer.
 - To add a play reverse fearure.
 - To attach a  mode (light,dark) button.
  
+## Conclusion: 
