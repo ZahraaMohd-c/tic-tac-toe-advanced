@@ -1,4 +1,4 @@
-# 🎮❌⭕Advaned tic-tac-toe
+# ❌⭕Advaned tic-tac-toe
 
 ## Advanced tic-tac-toe:
 - The game is a nested tic-tac-toe that each square in the outer board has a nine inner boards that make another tic-tac-toe inside of it.
