@@ -32,6 +32,10 @@ And that is how the game looks like
 
 // the link of the deployed game
 
+## Planning
+
+
+
 ## Attributions
 
 - [fonts](https://fonts.google.com/share?selection.family=Pixelify+Sans:wght@400..700|Press+Start+2P|Silkscreen:wght@400;700|Tektur:wght@400..900|VT323)
