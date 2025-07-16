@@ -17,8 +17,6 @@ I was tasked with creating a browser-based game at General Assembly, and I chose
 
 [planning](https://github.com/user-attachments/files/21255647/Nested.advanced.XO.pdf)
 
-// the link of the deployed game
-
 ## Attributions
 
 - [fonts](https://fonts.google.com/share?selection.family=Pixelify+Sans:wght@400..700|Press+Start+2P|Silkscreen:wght@400;700|Tektur:wght@400..900|VT323)
