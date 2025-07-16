@@ -30,7 +30,7 @@ And that is how the game looks like
 
 ## Getting started
 
-// the link of the deployed game
+> [🔗 Play the Game](https://zahraamohd-c.github.io/tic-tac-toe-advanced/)
 
 ## Planning
 
