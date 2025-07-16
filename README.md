@@ -2,34 +2,49 @@
 
 ## Introduction 
 
-I was tasked with creating a browser-based game at General Assembly, and I chose to build an advanced version of Tic-Tac-Toe. I really enjoyed developing it, and I hope you have just as much fun playing it! 
+I was tasked with creating a browser-based game at General Assembly, and I chose to build an advanced version of Tic-Tac-Toe. This game introduces a strategic twist to the classic version. Each move influences where the opponent can play next, encouraging both tactical thinking and forward planning. It's not just about winning one board—it's about managing multiple boards at once.
+I really enjoyed developing it, and I hope you have just as much fun playing it!
 
-## How to play the game
+And that is how the game looks like
 
-- The game is a nested tic-tac-toe that each square in the outer board has a nine inner boards that make another tic-tac-toe inside of it.
-- The game starts with X player which cann play anywhere in the inner squares and then according to the place played in the inner boards the O player show play in the same ouer square and so on.
-- If one of the inner squares are having a tie the outer square will be empty and if it is a win then the winner letter will be displayed in the outer square.
+<img width="821" height="413" alt="Image" src="https://github.com/user-attachments/assets/af54fdb8-5219-4375-b8f6-0acd4bb754ca" />
 
-<img width="589" height="706" alt="Image" src="https://github.com/user-attachments/assets/01705f4b-7cbe-460d-a127-453e180d8d85"  style=" display: block;
-  margin: auto;" />
+## 🕹️ How to Play
+
+- The game is a nested version of Tic-Tac-Toe. Each square in the outer 3×3 board contains another 3×3 inner board.
+- The game starts with Player X, who can play in any inner square.
+- The position where X plays dictates where O must play next (if X plays in the top-right square of an inner board, O must play in the top-right outer board).
+- If an inner board ends in a win, the winning player's symbol appears in the outer square.
+- If an inner board ends in a tie, the outer square remains empty.
+- The first player to win three outer squares in a row (horizontal, vertical, or diagonal) wins the game!
+
+## ✨ Features
+
+- 🎯 Ultimate Tic Tac Toe logic with inner & outer win conditions
+- 🎨 Retro pixel fonts and stylized UI
+- 📜 In-game instructions popup
+- 🔁 Restart functionality
+- 🎉 Win and tie message box
+- 🖱️ Hover animations and UI transitions
+
 
 ## Getting started
 
-- [planning](https://github.com/user-attachments/files/21255647/Nested.advanced.XO.pdf)
+// the link of the deployed game
 
 ## Attributions
 
 - [fonts](https://fonts.google.com/share?selection.family=Pixelify+Sans:wght@400..700|Press+Start+2P|Silkscreen:wght@400;700|Tektur:wght@400..900|VT323)
 - [Background](https://chatgpt.com/)
 
- ## Technologies Used
+## Technologies Used
  
 - JavaScript
 - HTML
 - CSS
 - Git
 
-## Additional fearures
+## Additional fearures (planed)
 
 - To make the game one player against the computer.
 - To add a play reverse fearure.
