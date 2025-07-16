@@ -10,7 +10,6 @@ I was tasked with creating a browser-based game at General Assembly, and I chose
 - The game starts with X player which cann play anywhere in the inner squares and then according to the place played in the inner boards the O player show play in the same ouer square and so on.
 - If one of the inner squares are having a tie the outer square will be empty and if it is a win then the winner letter will be displayed in the outer square.
 
-<img width="502" height="398" alt="Image" src="https://github.com/user-attachments/assets/96cc15d1-59a6-40bf-9094-0f22293a051b" />
 
 ## Getting started
 
