@@ -1,7 +1,8 @@
 # Project1: Advaned tic-tac-toe
 
-## Introduction :
+## Introduction 
 
+I was tasked with creating a browser-based game at General Assembly, and I chose to build an advanced version of Tic-Tac-Toe. I really enjoyed developing it, and I hope you have just as much fun playing it! 
 
 ## How to play the game:
 
