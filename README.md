@@ -32,4 +32,3 @@ I was tasked with creating a browser-based game at General Assembly, and I chose
 - To add a play reverse fearure.
 - To attach a  mode (light,dark) button.
  
-## Conclusion
