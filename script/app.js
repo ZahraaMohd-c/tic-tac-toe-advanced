@@ -29,7 +29,7 @@ function init() {
     let turn = 'X'
     let winner = false
     let tie = false
-    let activeBoardIndex = null // user can play anywhere
+    let activeBoardIndex = null // user can play anywhere when it is null 
 
     function openPages(pageId) {
         document.getElementById('main-page').style.display = 'none'
@@ -59,7 +59,7 @@ function init() {
                 return
             }
             if (innerBoard[outerIndex].tie) {
-                outerSquare.innerHTML = mainBoard[outerIndex]//'⛔'
+                outerSquare.innerHTML = mainBoard[outerIndex]
                 outerSquare.classList.add('tie')
                 return
             }
