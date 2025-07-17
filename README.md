@@ -18,11 +18,7 @@ And that is how the game looks like
 - If an inner board ends in a tie, the outer square remains empty.
 - The first player to win three outer squares in a row (horizontal, vertical, or diagonal) wins the game!
 
-<<<<<<< HEAD
 ## ✨ Features
-=======
-##  Features
->>>>>>> e6ded07b08553b69b98c377df23b74654ef993c9
 
 - 🎯 Ultimate Tic Tac Toe logic with inner & outer win conditions
 - 🎨 Retro pixel fonts and stylized UI
@@ -34,11 +30,7 @@ And that is how the game looks like
 
 ## Getting started
 
-> [🔗 Play the Game](https://zahraamohd-c.github.io/tic-tac-toe-advanced/)
-
-## Planning
-
-> [Nested advanced XO.pdf](https://github.com/user-attachments/files/21261894/Nested.advanced.XO.pdf)
+// the link of the deployed game
 
 ## Attributions
 
