@@ -48,7 +48,7 @@ And that is how the game looks like
 - CSS
 - Git
 
-## Additional fearures (planed)
+## Additional fearures (planned)
 
 - To make the game one player against the computer.
 - To add a play reverse fearure.
